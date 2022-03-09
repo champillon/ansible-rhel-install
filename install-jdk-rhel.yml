@@ -10,7 +10,11 @@
       yum:
         name: '{{ packages }}'
         state: present
-        update_cache: true
+        update_cache: false
       vars:
         packages:
           - java-1.8.0-openjdk
+    - command: java -version
+      register: java_version
+    - debug:
+        msg: "Installed java version: '{{ java_version.stderr }}'"
