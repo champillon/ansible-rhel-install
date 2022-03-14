@@ -1,20 +1,13 @@
-- name: Install JDK on RHEL
-  hosts: rhel
-  become: True
-  become_method: sudo
-  become_user: root
-  gather_facts: no
 
-  tasks:
-    - name: Ensure jdk package installed
-      yum:
-        name: '{{ packages }}'
-        state: present
-        update_cache: false
-      vars:
-        packages:
-          - java-1.8.0-openjdk
-    - command: java -version
-      register: java_version
-    - debug:
-        msg: "Installed java version: '{{ java_version.stderr }}'"
+- name: Ensure jdk package installed
+  yum:
+    name: '{{ packages }}'
+    state: present
+    update_cache: true
+  vars:
+    packages:
+      - java-1.8.0-openjdk
+- command: java -version
+  register: java_version
+- debug:
+    msg: "Installed java version: '{{ java_version.stderr }}'"
