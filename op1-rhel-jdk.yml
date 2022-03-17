@@ -75,20 +75,13 @@
           items:
             - http-80
       register: instance
+    
+    - name: Install JDK
+      include_tasks: install-jdk-rhel.yml
       
     - name: Wait for SSH to come up
       wait_for: host={{ address.address }} port=22 delay=10 timeout=60
 
     - name: Add host to groupname
       add_host: hostname={{ address.address }} groupname=new_instances
-
-- name: Create Provision user
-  hosts: new_instances
-  connection: ssh
-  become: True
-  become_method: sudo
-  become_user: root
-  gather_facts: no
-  tasks:
-    - name: Install JDK
-      include_tasks: install-jdk-rhel.yml
+    
