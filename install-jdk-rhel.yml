@@ -1,7 +1,4 @@
-
 - name: Ensure jdk package installed
-  become: true
-  become_method: sudo
   yum:
     name: '{{ packages }}'
     state: present
