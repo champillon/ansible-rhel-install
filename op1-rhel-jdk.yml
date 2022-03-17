@@ -64,7 +64,7 @@
                   type: 'ONE_TO_ONE_NAT'
         zone: "{{ zone }}"
         metadata:
-          ssh-keys: "root:{{ lookup('file',  '/root/.ssh/id_rsa.pub') }}"
+          ssh-keys: "root:{{ root_pub_key }}"
         project: "{{ gcp_project }}"
         auth_kind: "{{ gcp_cred_kind }}"
         scopes:
