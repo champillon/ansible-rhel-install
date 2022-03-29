@@ -81,7 +81,5 @@
       add_host: hostname={{ address.address }} groupname=new_instances
     
     - name: Install JDK
-      become: true
-      become_method: sudo
       include_tasks: install-jdk-rhel.yml
     
