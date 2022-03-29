@@ -83,13 +83,17 @@
         name=provision
         password={{ provision_password }}
     - name: Enable PasswordAuthentication 
+      become: true
+      become_method: sudo
       lineinfile:
         dest: /etc/ssh/sshd_config
         regexp: '^PasswordAuthentication'
         line: "PasswordAuthentication yes"
         state: present
         backup: yes
-    - name: Disable ChallengeResponseAuthentication 
+    - name: Disable ChallengeResponseAuthentication
+      become: true
+      become_method: sudo
       lineinfile:
         dest: /etc/ssh/sshd_config
         regexp: '^ChallengeResponseAuthentication'
@@ -97,6 +101,8 @@
         state: present
         backup: yes
     - name: restart ssh
+      become: true
+      become_method: sudo
       service:
         name: sshd
         state: restarted
