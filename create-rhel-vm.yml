@@ -8,6 +8,7 @@
       region: "asia-southeast1"
       image: "projects/rhel-cloud/global/images/rhel-7-v20220119"
       vm_name: "rhel"
+      provision_password: '$1$SomeSalt$UqddPX3r4kH3UL5jq5/ZI.'
 
   tasks:
     - name: create a disk
@@ -76,18 +77,7 @@
 
     - name: Add host to groupname
       add_host: hostname={{ address.address }} groupname=new_instances
-          
-- name: Create Provision user
-  hosts: new_instances
-  connection: ssh
-  become: True
-  become_method: sudo
-  become_user: root
-  gather_facts: no
-  vars:
-    - provision_password: '$1$SomeSalt$UqddPX3r4kH3UL5jq5/ZI.'
-#password: "This is my Password"
-  tasks:
+
     - name: Add a new user named provision
       user:
         name=provision
