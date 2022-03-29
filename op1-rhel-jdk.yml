@@ -63,8 +63,6 @@
                   nat_ip: "{{ address }}"
                   type: 'ONE_TO_ONE_NAT'
         zone: "{{ zone }}"
-        metadata:
-          ssh-keys: "root:{{ root_pub_key }}"
         project: "{{ gcp_project }}"
         auth_kind: "{{ gcp_cred_kind }}"
         scopes:
