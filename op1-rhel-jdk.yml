@@ -79,15 +79,9 @@
 
     - name: Add host to groupname
       add_host: hostname={{ address.address }} groupname=new_instances
-
-- name: Create Provision user
-  hosts: new_instances
-  connection: ssh
-  become: True
-  become_method: sudo
-  become_user: root
-  gather_facts: no
-  tasks:
+    
     - name: Install JDK
+      become: true
+      become_method: sudo
       include_tasks: install-jdk-rhel.yml
     
