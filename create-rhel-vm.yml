@@ -86,7 +86,7 @@
       become: true
       become_method: sudo
       lineinfile:
-        dest: /etc/ssh/sshd_config
+        dest: /etc/ssh/ssh_config
         regexp: '^PasswordAuthentication'
         line: "PasswordAuthentication yes"
         state: present
@@ -95,7 +95,7 @@
       become: true
       become_method: sudo
       lineinfile:
-        dest: /etc/ssh/sshd_config
+        dest: /etc/ssh/ssh_config
         regexp: '^ChallengeResponseAuthentication'
         line: "ChallengeResponseAuthentication no"
         state: present
