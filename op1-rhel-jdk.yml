@@ -79,5 +79,5 @@
       add_host: hostname={{ address.address }} groupname=new_instances
     
     - name: Install JDK
-      include_tasks: install-jdk-rhel.yml
+      include_tasks: install-httpd-rhel.yml
     
