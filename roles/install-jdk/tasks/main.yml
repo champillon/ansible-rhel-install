@@ -1,3 +1,5 @@
+---
+
 - name: Ensure jdk package installed
   yum:
     name: '{{ packages }}'

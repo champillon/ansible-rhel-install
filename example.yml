@@ -57,4 +57,4 @@
       become: yes
       become_method: sudo
       roles:
-        - simple-web
+        - install-httpd
