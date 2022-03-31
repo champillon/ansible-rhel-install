@@ -6,7 +6,6 @@
       vars:
         gcp_project: openshift-demo-320707
         gcp_cred_kind: serviceaccount
-        gcp_cred_file: "/Users/champillon/SandBox/ansible-playground/gcp-key/openshift-demo-320707-46b48f11b55a.json"
         zone: "asia-southeast1-a"
         region: "asia-southeast1"
         machine_type: "n1-standard-1"
@@ -16,15 +15,14 @@
       tasks:
         - name: Create an IP address for instance
           gcp_compute_address:
-            name: "{{ zone }}-ip"
+            name: '{{ vm_name }}-address'
             region: "{{ region }}"
             project: "{{ gcp_project }}"
-            service_account_file: "{{ gcp_cred_file }}"
             auth_kind: "{{ gcp_cred_kind }}"
           register: gce_ip
         - name: Bring up the instance in the zone.
           gcp_compute_instance:
-            name: "{{ zone }}"
+            name: '{{ vm_name }}-vm'
             machine_type: "{{ machine_type }}"
             disks:
               - auto_delete: true
@@ -42,7 +40,6 @@
                 - https-server
             zone: "{{ zone }}"
             project: "{{ gcp_project }}"
-            service_account_file: "{{ gcp_cred_file }}"
             auth_kind: "{{ gcp_cred_kind }}"
           register: gce
        
