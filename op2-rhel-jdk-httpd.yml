@@ -49,7 +49,7 @@
         - name: Save host data for first zone
           add_host: hostname={{ gce_ip.address }} groupname=gce_instances_ips
 
-    - name: Deploy Apache and custom html page
+    - name: Install JDK and Apache Httpd
       hosts: gce_instances_ips
       become: yes
       become_method: sudo
