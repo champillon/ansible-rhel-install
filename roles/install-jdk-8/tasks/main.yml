@@ -11,4 +11,4 @@
 - command: java -version
   register: java_version
 - debug:
-    msg: "Installed java version: '{{ java_version.stderr }}'"
+    msg: "Installed java X version: '{{ java_version.stderr }}'"
