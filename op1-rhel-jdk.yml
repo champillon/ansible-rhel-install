@@ -57,4 +57,12 @@
       become: yes
       become_method: sudo
       roles:
-        - install-jdk
+        - install-jdk-11
+        - install-jdk-17
+      tasks:
+        - name: Change JDK from 11 -> 17
+          alternatives:
+            name: java
+            path: /usr/lib/jvm/jre-17/bin/java
+            link: /usr/bin/java
+            priority: 20000
